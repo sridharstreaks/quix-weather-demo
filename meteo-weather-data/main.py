@@ -1,4 +1,3 @@
-from csv_source import CsvSource
 from quixstreams import Application
 import os
 import requests
@@ -28,20 +27,18 @@ def main():
     if topic_name == "":
         raise ValueError("The 'output' environment variable is required. This is the output topic that data will be published to.")
 
-    topic = app.topic(topic_name)
-
     i=0
 
     with app.get_producer() as producer:
         while i<100:
             weather=get_weather()
             producer.produce(
-                topic=topic.name,
+                topic=topic_name,
                 key="chennai",
                 value=json.dumps(weather),
             )
             i+=1
-            time.sleep(10)
+            time.sleep(30)
 
 #csv_source = CsvSource("demo-data.csv", sleep_between_rows=0.2)
 #sdf = app.dataframe(source=csv_source)

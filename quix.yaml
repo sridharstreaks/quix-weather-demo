@@ -19,7 +19,25 @@ deployments:
         inputType: OutputTopic
         required: false
         value: meteo-weather-chennai-raw
+  - name: consume-meteo-weather-data
+    application: consume-meteo-weather-data
+    version: latest
+    deploymentType: Service
+    resources:
+      cpu: 200
+      memory: 800
+      replicas: 1
+    variables:
+      - name: input
+        inputType: InputTopic
+        required: false
+        value: meteo-weather-chennai-raw
+      - name: output
+        inputType: OutputTopic
+        required: false
+        value: bronze-weather-data-chennai
 
 # This section describes the Topics of the data pipeline
 topics:
   - name: meteo-weather-chennai-raw
+  - name: bronze-weather-data-chennai

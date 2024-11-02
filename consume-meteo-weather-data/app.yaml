@@ -1,0 +1,15 @@
+name: consume-meteo-weather-data
+language: Python
+variables:
+  - name: input
+    inputType: InputTopic
+    defaultValue: meteo-weather-chennai-raw
+    required: false
+  - name: output
+    inputType: OutputTopic
+    defaultValue: bronze-weather-data-chennai
+    required: false
+dockerfile: dockerfile
+runEntryPoint: main.py
+defaultFile: main.py
+libraryItemId: starter-transformation
